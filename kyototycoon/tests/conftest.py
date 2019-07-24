@@ -1,0 +1,40 @@
+# (C) Datadog, Inc. 2018
+# All rights reserved
+# Licensed under a 3-clause BSD style license (see LICENSE)
+
+import os
+
+import pytest
+import requests
+
+from datadog_checks.dev import docker_run
+
+from .common import (
+    HERE, URL, DEFAULT_INSTANCE
+)
+
+
+@pytest.fixture(scope="session")
+def dd_environment():
+    """
+    Spin up a kyototycoon docker image
+    """
+
+    with docker_run(
+        compose_file=os.path.join(HERE, 'compose', 'compose_kyototycoon.yaml'),
+        endpoints='{}/rpc/report'.format(URL),
+    ):
+
+        # Generate a test database
+        data = {
+            'dddd': 'dddd'
+        }
+        headers = {
+            'X-Kt-Mode': 'set'
+        }
+
+        for i in range(100):
+            requests.put(URL, data=data, headers=headers)
+            requests.get(URL)
+
+        yield DEFAULT_INSTANCE

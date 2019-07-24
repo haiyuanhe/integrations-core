@@ -1,0 +1,23 @@
+{
+  "categories": [
+    "web"
+  ],
+  "creates_events": false,
+  "display_name": "Linkerd",
+  "guid": "9aa60dff-4baf-4112-9177-f9c3814dd513",
+  "is_public": true,
+  "maintainer": "help@datadoghq.com",
+  "manifest_version": "1.0.0",
+  "metric_prefix": "linkerd.",
+  "metric_to_check": "linkerd.rt.client.connections",
+  "name": "linkerd",
+  "public_title": "Datadog-Linkerd Integration",
+  "short_description": "Monitor your services health with metrics from linkerd.",
+  "support": "core",
+  "supported_os": [
+    "linux",
+    "mac_os",
+    "windows"
+  ],
+  "type": "check"
+}

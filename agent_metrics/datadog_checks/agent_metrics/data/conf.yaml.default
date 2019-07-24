@@ -1,0 +1,24 @@
+# This file is overwritten upon Agent upgrade.
+# To make modifications to the check configuration, please copy this file
+# to `agent_metrics.yaml` and make your changes on that file.
+
+init_config:
+    process_metrics:
+        - name: memory_info
+          type: gauge
+          active: true
+        - name: io_counters
+          type: rate
+          active: true
+        - name: num_threads
+          type: gauge
+          active: true
+        - name: connections
+          type: gauge
+          active: false
+
+instances:
+  - tags:
+    # Optional tags to be applied to every emitted metric and service check.
+    #   - optional_tag1
+    #   - optional_tag2
